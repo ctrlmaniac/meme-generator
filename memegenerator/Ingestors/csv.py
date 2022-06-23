@@ -11,11 +11,17 @@ from .interface import IngestorInterface
 
 
 class CSVIngestor(IngestorInterface):
+    """CSVIngestor.
+
+    An ingestor that parses CSV files.
+    """
+
     def __init__(self):
+        """Initialize class."""
         self.accepts = "csv"
 
     def parse(self, infile) -> List[QuoteModel]:
-        """Parse the infile and return a list of QuoteModel"""
+        """Parse the infile and return a list of QuoteModel."""
         quotes = list()
 
         if not self.can_ingest(infile):

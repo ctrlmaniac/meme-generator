@@ -1,4 +1,5 @@
 """Ingestor.
+
 A Class that manages all ingestors.
 """
 from .docx import DocxIngestor
@@ -8,17 +9,21 @@ from .csv import CSVIngestor
 
 class Ingestor:
     """Ingestor.
-    A class that manages all ingestors"""
+
+    A class that manages all ingestors
+    """
 
     @property
     def extension(self, infile):
         """Return the extension of the given infile.
+
         :param infile: a fully qualified path to the infile.
         """
         return infile.split(".")[-1].lower()
 
     def parse(self, infile: str):
         """Parse a file.
+
         pass the file to the right ingestor.
         :param infile: a fully qualified path to the infile.
         """

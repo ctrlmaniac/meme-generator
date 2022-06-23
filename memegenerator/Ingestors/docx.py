@@ -10,11 +10,17 @@ from .interface import IngestorInterface
 
 
 class DocxIngestor(IngestorInterface):
+    """DocxIngestor.
+
+    An ingestor that parses docx files.
+    """
+
     def __init__(self):
+        """Inizialize class."""
         self.accepts = "docx"
 
     def parse(self, infile) -> List[QuoteModel]:
-        """Parse the infile and return a list of QuoteModel"""
+        """Parse the infile and return a list of QuoteModel."""
         quotes = list()
 
         if not self.can_ingest(infile):

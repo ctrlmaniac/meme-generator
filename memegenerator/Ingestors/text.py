@@ -9,11 +9,17 @@ from .interface import IngestorInterface
 
 
 class TextIngestor(IngestorInterface):
+    """TextIngestor.
+
+    An ingestor that parses txt files.
+    """
+
     def __init__(self):
+        """Inizialize class."""
         self.accepts = "txt"
 
     def parse(self, infile) -> List[QuoteModel]:
-        """Parse the infile and return a list of QuoteModel"""
+        """Parse the infile and return a list of QuoteModel."""
         quotes = list()
 
         if not self.can_ingest(infile):
