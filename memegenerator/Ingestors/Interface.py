@@ -4,7 +4,7 @@ An interface for ingesting quotes in different formats
 """
 from abc import ABC, abstractmethod
 from typing import List
-from .QuoteModel import QuoteModel
+from memegenerator.QuoteEngine.QuoteModel import QuoteModel
 
 
 class IngestorInterface(ABC):
@@ -23,6 +23,5 @@ class IngestorInterface(ABC):
         pass
 
     @classmethod
-    @abstractmethod
-    def can_ingest(cls, path) -> bool:
+    def can_ingest(cls, infile: str) -> bool:
         pass
