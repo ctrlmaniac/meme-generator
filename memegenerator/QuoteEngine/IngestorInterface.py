@@ -4,7 +4,7 @@ An interface for ingesting quotes in different formats
 """
 from abc import ABC, abstractmethod
 from typing import List
-from .quote import QuoteModel
+from .QuoteModel import QuoteModel
 
 
 class IngestorInterface(ABC):
