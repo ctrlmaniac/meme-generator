@@ -11,7 +11,7 @@ class QuoteModel:
 
     def __repl__(self) -> str:
         """Returns a human-readable quote with the author"""
-        return f"{self.body} - {self.author}"
+        return f'"{self.body}" - {self.author}'
 
     def __str__(self) -> str:
         """Returns a human-readable quote with the author"""
