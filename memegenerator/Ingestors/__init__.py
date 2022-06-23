@@ -1,3 +1,5 @@
+"""This file will export all ingestors."""
+
 from .interface import IngestorInterface
 from .text import TextIngestor
 from .docx import DocxIngestor
