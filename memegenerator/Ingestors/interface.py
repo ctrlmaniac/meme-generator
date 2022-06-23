@@ -13,9 +13,9 @@ class IngestorInterface(ABC):
     """
 
     @abstractmethod
-    def parse(cls, path: str) -> List[QuoteModel]:
+    def parse(self, infile: str) -> List[QuoteModel]:
         """Parse a file and return a list of quotes
-        :param path: a fully qualified pathname to a file
+        :param infile: a fully qualified pathname to a file
 
         Returns a List of quotes
         """
