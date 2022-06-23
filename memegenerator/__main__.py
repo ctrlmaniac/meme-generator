@@ -1,12 +1,12 @@
 import os
 from pathlib import Path
-from .Ingestors import TextIngestor
+from .Ingestors import DocxIngestor
 
 if __name__ == "__main__":
     BASE_DIR = Path(__file__).resolve().parent
 
-    txt = TextIngestor(
-        os.path.join(BASE_DIR, "_data/SimpleLines/SimpleLines.txt")
+    quotes = DocxIngestor(
+        os.path.join(BASE_DIR, "_data/SimpleLines/SimpleLines.docx")
     )
 
-    txt.parse()
+    quotes.parse()
