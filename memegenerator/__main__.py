@@ -1,12 +1,4 @@
-import os
-from pathlib import Path
-from .Ingestors import CSVIngestor
+"""This file allows the use of the memegenerator module.
 
-if __name__ == "__main__":
-    BASE_DIR = Path(__file__).resolve().parent
-
-    quotes = CSVIngestor(
-        os.path.join(BASE_DIR, "_data/SimpleLines/SimpleLines.csv")
-    )
-
-    quotes.parse()
+It is required if run the generator with the command python -m memegenerator.
+"""
