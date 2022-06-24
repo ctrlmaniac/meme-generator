@@ -65,8 +65,15 @@ def meme_post():
     if not os.path.isdir(os.path.join(ROOT_DIR, "tmp")):
         os.mkdir(os.path.join(ROOT_DIR, "tmp"))
 
-    image_url = request.form.get("image_url")
-    img_data = requests.get(image_url, stream=True).content
+    # Check if image url is valid
+    try:
+        image_url = request.form.get("image_url")
+        img_data = requests.get(image_url, stream=True).content
+    except (
+        requests.exceptions.MissingSchema,
+        requests.exceptions.ConnectionError,
+    ):
+        return "Please, provide a valid url"
 
     with open(tmp_image, "wb") as f:
         f.write(img_data)
