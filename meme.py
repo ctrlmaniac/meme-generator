@@ -24,7 +24,7 @@ def generate_meme(path=None, body=None, author=None):
 
         img = random.choice(imgs)
     else:
-        img = path[0]
+        img = path
 
     if body is None:
         quote_files = [
@@ -46,8 +46,9 @@ def generate_meme(path=None, body=None, author=None):
 
     print(quote)
 
-    meme = MemeEngine("tmp")
+    meme = MemeEngine("static")
     path = meme.make_meme(img, quote.body, quote.author)
+
     return path
 
 
