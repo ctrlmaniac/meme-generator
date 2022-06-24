@@ -2,16 +2,16 @@
 
 Ingestor that parse and read PDF files.
 """
-import subprocess
 import os
+import subprocess
+import uuid
 from pathlib import Path
 from typing import List
-import uuid
-
-from .text import TextIngestor
 
 from QuoteEngine import QuoteModel
+
 from .interface import IngestorInterface
+from .text import TextIngestor
 
 
 class PDFIngestor(IngestorInterface):

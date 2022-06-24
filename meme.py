@@ -1,13 +1,13 @@
 """A command-line tool for generating modules."""
 
-from argparse import ArgumentParser
 import os
-from pathlib import Path
 import random
+from argparse import ArgumentParser
+from pathlib import Path
 
+from Ingestors import Ingestor
 from MemeEngine import MemeEngine
 from QuoteEngine import QuoteModel
-from Ingestors import Ingestor
 
 
 def generate_meme(path=None, body=None, author=None):

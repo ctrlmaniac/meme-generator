@@ -4,6 +4,7 @@ An interface for ingesting quotes in different formats
 """
 from abc import ABC
 from typing import List
+
 from QuoteEngine import QuoteModel
 
 

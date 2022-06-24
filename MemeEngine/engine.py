@@ -3,9 +3,10 @@
 A class that generates meme
 """
 import os
-from pathlib import Path
 import random
 import uuid
+from pathlib import Path
+
 from PIL import Image, ImageDraw, ImageFont
 
 

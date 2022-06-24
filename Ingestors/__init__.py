@@ -1,11 +1,11 @@
 """This file will export all ingestors."""
 
-from .interface import IngestorInterface
-from .text import TextIngestor
-from .docx import DocxIngestor
 from .csv import CSVIngestor
+from .docx import DocxIngestor
 from .ingestor import Ingestor
+from .interface import IngestorInterface
 from .pdf import PDFIngestor
+from .text import TextIngestor
 
 __all__ = [
     "IngestorInterface",

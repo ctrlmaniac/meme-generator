@@ -2,10 +2,12 @@
 
 An ingestor to parse, read and save quotes from docx files.
 """
-from docx import Document
 from typing import List
 
+from docx import Document
+
 from QuoteEngine import QuoteModel
+
 from .interface import IngestorInterface
 
 

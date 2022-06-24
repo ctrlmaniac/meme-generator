@@ -1,14 +1,15 @@
 """This module implements Flask to serve the meme-generator online."""
-from pathlib import Path
-import random
 import os
+import random
 import uuid
+from pathlib import Path
+
 import requests
-from flask import Flask, render_template, abort, request
-from MemeEngine import MemeEngine
+from flask import Flask, abort, render_template, request
+
 from Ingestors import Ingestor
 from meme import generate_meme
-
+from MemeEngine import MemeEngine
 
 ROOT_DIR = Path(__file__).resolve().parent
 app = Flask(__name__)

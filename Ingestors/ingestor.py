@@ -2,10 +2,10 @@
 
 A Class that manages all ingestors.
 """
-from .pdf import PDFIngestor
-from .docx import DocxIngestor
-from .text import TextIngestor
 from .csv import CSVIngestor
+from .docx import DocxIngestor
+from .pdf import PDFIngestor
+from .text import TextIngestor
 
 
 class Ingestor:
