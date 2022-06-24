@@ -34,7 +34,7 @@ class PDFIngestor(IngestorInterface):
             os.mkdir(tmp_dir)
 
         with open(tmp_file, "w") as file:
-            file.write("file")
+            file.write("")
 
         cmd = f"{pdftotext_bin} -layout -nopgbrk {infile} {tmp_file}"
 
