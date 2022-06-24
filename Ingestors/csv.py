@@ -23,7 +23,9 @@ class CSVIngestor(IngestorInterface):
         quotes = list()
 
         if not cls.can_ingest(infile):
-            print("Unable to ingest file. Please, provide a CSV file.")
+            raise ValueError(
+                "Unable to ingest file. Please, provide a CSV file."
+            )
         else:
             csv = read_csv(infile)
 

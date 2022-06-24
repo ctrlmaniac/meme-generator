@@ -23,7 +23,9 @@ class DocxIngestor(IngestorInterface):
         quotes = list()
 
         if not cls.can_ingest(infile):
-            print("Unable to ingest file. Please, provide a DOCX file.")
+            raise ValueError(
+                "Unable to ingest file. Please, provide a DOCX file."
+            )
         else:
             doc = Document(infile)
 

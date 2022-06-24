@@ -25,23 +25,28 @@ class PDFIngestor(IngestorInterface):
         """Parse the infile and return a list of QuoteModel."""
         quotes = list()
 
-        BASE_DIR = Path(__file__).resolve().parent.parent
-        pdftotext_bin = os.path.join(BASE_DIR, "pdftotext")
+        if not cls.can_ingest(infile):
+            raise ValueError(
+                "Unable to ingest file. Please, provide a PDF file."
+            )
+        else:
+            BASE_DIR = Path(__file__).resolve().parent.parent
+            pdftotext_bin = os.path.join(BASE_DIR, "pdftotext")
 
-        tmp_dir = os.path.join(BASE_DIR, "tmp")
-        tmp_file = os.path.join(tmp_dir, f"{uuid.uuid4()}.txt")
-        if not os.path.isdir(tmp_dir):
-            os.mkdir(tmp_dir)
+            tmp_dir = os.path.join(BASE_DIR, "tmp")
+            tmp_file = os.path.join(tmp_dir, f"{uuid.uuid4()}.txt")
+            if not os.path.isdir(tmp_dir):
+                os.mkdir(tmp_dir)
 
-        with open(tmp_file, "w") as file:
-            file.write("")
+            with open(tmp_file, "w") as file:
+                file.write("")
 
-        cmd = f"{pdftotext_bin} -layout -nopgbrk {infile} {tmp_file}"
+            cmd = f"{pdftotext_bin} -layout -nopgbrk {infile} {tmp_file}"
 
-        subprocess.call(cmd, shell=True, stderr=subprocess.STDOUT)
+            subprocess.call(cmd, shell=True, stderr=subprocess.STDOUT)
 
-        quotes = TextIngestor.parse(tmp_file)
+            quotes = TextIngestor.parse(tmp_file)
 
-        os.remove(tmp_file)
+            os.remove(tmp_file)
 
         return quotes

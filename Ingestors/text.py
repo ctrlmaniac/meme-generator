@@ -2,6 +2,7 @@
 
 An ingestor to parse, read and save quotes from txt files.
 """
+from multiprocessing.sharedctypes import Value
 from typing import List
 
 from QuoteEngine import QuoteModel
@@ -21,7 +22,9 @@ class TextIngestor(IngestorInterface):
         quotes = list()
 
         if not cls.can_ingest(infile):
-            print("Unable to ingest file. Please, provide a TXT file.")
+            raise ValueError(
+                "Unable to ingest file. Please, provide a TXT file."
+            )
         else:
             with open(infile, "r") as file:
                 contents = file.readlines()
