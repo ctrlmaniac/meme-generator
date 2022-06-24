@@ -4,6 +4,7 @@ A class that generates meme
 """
 import os
 import random
+import textwrap
 import uuid
 from pathlib import Path
 
@@ -45,7 +46,18 @@ class MemeEngine:
         height = int(real_height * width / real_width)
         img.thumbnail((width, height))
 
-        text_position = random.choice(range(30, height - 50))
+        text = textwrap.fill(text, width=40)
+        draw = ImageDraw.Draw(img)
+
+        count_line = 0
+        for line in text.split("\n"):
+            count_line += 1
+
+        if count_line > 1:
+            w, h = draw.textsize(text)
+            text_position = (height - h) / 2
+        else:
+            text_position = random.choice(range(30, height - 100))
         fill = (0, 0, 0)
         stroke_fill = (255, 255, 255)
 
@@ -55,7 +67,6 @@ class MemeEngine:
             os.path.join(FONTS_DIR, "Kalam/Kalam-Bold.ttf"), 22
         )
 
-        draw = ImageDraw.Draw(img)
         draw.text(
             (30, text_position),
             text,
@@ -65,7 +76,7 @@ class MemeEngine:
             stroke_fill=stroke_fill,
         )
         draw.text(
-            (40, text_position + 25),
+            (40, text_position + (count_line * 14) + 25),
             f"- {author}",
             fill,
             kalam,
