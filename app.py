@@ -3,6 +3,7 @@ import os
 import random
 import uuid
 from pathlib import Path
+import PIL
 
 import requests
 from flask import Flask, abort, render_template, request
@@ -74,6 +75,13 @@ def meme_post():
         requests.exceptions.ConnectionError,
     ):
         return "Please, provide a valid url"
+
+    # Check if url is image
+    try:
+        test = PIL.Image.open(image_url)
+        test.close()
+    except FileNotFoundError:
+        return "Please, provide a valid image"
 
     with open(tmp_image, "wb") as f:
         f.write(img_data)
