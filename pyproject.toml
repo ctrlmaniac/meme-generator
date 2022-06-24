@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "meme-generator"
-version = "0.1.0"
+version = "1.0.0"
 description = "A meme generator written in python and served as a command-line tool and with flask!"
 authors = ["Davide Di Criscito <davide.dicriscito@gmail.com>"]
 license = "MIT"
