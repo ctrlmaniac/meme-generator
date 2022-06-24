@@ -8,6 +8,7 @@ from typing import List
 from QuoteEngine import QuoteModel
 
 from .interface import IngestorInterface
+from exceptions import InvalidFile
 
 
 class TextIngestor(IngestorInterface):
@@ -22,9 +23,7 @@ class TextIngestor(IngestorInterface):
         quotes = list()
 
         if not cls.can_ingest(infile):
-            raise ValueError(
-                "Unable to ingest file. Please, provide a TXT file."
-            )
+            raise InvalidFile("PDF")
         else:
             with open(infile, "r") as file:
                 contents = file.readlines()

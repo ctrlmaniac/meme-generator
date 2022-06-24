@@ -9,6 +9,7 @@ from docx import Document
 from QuoteEngine import QuoteModel
 
 from .interface import IngestorInterface
+from exceptions import InvalidFile
 
 
 class DocxIngestor(IngestorInterface):
@@ -23,9 +24,7 @@ class DocxIngestor(IngestorInterface):
         quotes = list()
 
         if not cls.can_ingest(infile):
-            raise ValueError(
-                "Unable to ingest file. Please, provide a DOCX file."
-            )
+            raise InvalidFile("DOCX")
         else:
             doc = Document(infile)
 

@@ -9,6 +9,7 @@ from pandas import read_csv
 from QuoteEngine import QuoteModel
 
 from .interface import IngestorInterface
+from exceptions import InvalidFile
 
 
 class CSVIngestor(IngestorInterface):
@@ -23,9 +24,7 @@ class CSVIngestor(IngestorInterface):
         quotes = list()
 
         if not cls.can_ingest(infile):
-            raise ValueError(
-                "Unable to ingest file. Please, provide a CSV file."
-            )
+            raise InvalidFile("CSV")
         else:
             csv = read_csv(infile)
 
