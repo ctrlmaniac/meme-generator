@@ -2,6 +2,7 @@
 
 A Class that manages all ingestors.
 """
+from .pdf import PDFIngestor
 from .docx import DocxIngestor
 from .text import TextIngestor
 from .csv import CSVIngestor
@@ -30,7 +31,7 @@ class Ingestor:
         elif ext == "txt":
             return TextIngestor.parse(infile)
         elif ext == "pdf":
-            pass
+            return PDFIngestor.parse(infile)
         else:
             raise ValueError(
                 "Invalid file! Please, provide a txt, docx, csv or pdf file!"

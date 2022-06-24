@@ -5,6 +5,7 @@ from .text import TextIngestor
 from .docx import DocxIngestor
 from .csv import CSVIngestor
 from .ingestor import Ingestor
+from .pdf import PDFIngestor
 
 __all__ = [
     "IngestorInterface",
@@ -12,4 +13,5 @@ __all__ = [
     "DocxIngestor",
     "CSVIngestor",
     "Ingestor",
+    "PDFIngestor",
 ]

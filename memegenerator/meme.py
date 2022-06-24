@@ -30,7 +30,7 @@ def generate_meme(path=None, body=None, author=None):
         quote_files = [
             os.path.join(BASE_DIR, "_data/DogQuotes/DogQuotesTXT.txt"),
             os.path.join(BASE_DIR, "_data/DogQuotes/DogQuotesDOCX.docx"),
-            # os.path.join(BASE_DIR, "_data/DogQuotes/DogQuotesPDF.pdf"), TODO
+            os.path.join(BASE_DIR, "_data/DogQuotes/DogQuotesPDF.pdf"),
             os.path.join(BASE_DIR, "_data/DogQuotes/DogQuotesCSV.csv"),
         ]
         quotes = []
