@@ -5,9 +5,9 @@ import os
 from pathlib import Path
 import random
 
-from .MemeEngine import MemeEngine
-from .QuoteEngine import QuoteModel
-from .Ingestors import Ingestor
+from MemeEngine import MemeEngine
+from QuoteEngine import QuoteModel
+from Ingestors import Ingestor
 
 
 def generate_meme(path=None, body=None, author=None):

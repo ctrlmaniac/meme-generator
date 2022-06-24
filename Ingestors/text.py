@@ -4,7 +4,7 @@ An ingestor to parse, read and save quotes from txt files.
 """
 from typing import List
 
-from ..QuoteEngine import QuoteModel
+from QuoteEngine import QuoteModel
 from .interface import IngestorInterface
 
 

@@ -10,7 +10,7 @@ import uuid
 
 from .text import TextIngestor
 
-from ..QuoteEngine import QuoteModel
+from QuoteEngine import QuoteModel
 from .interface import IngestorInterface
 
 
@@ -25,7 +25,7 @@ class PDFIngestor(IngestorInterface):
         """Parse the infile and return a list of QuoteModel."""
         quotes = list()
 
-        BASE_DIR = Path(__file__).resolve().parent.parent.parent
+        BASE_DIR = Path(__file__).resolve().parent.parent
         pdftotext_bin = os.path.join(BASE_DIR, "pdftotext")
 
         tmp_dir = os.path.join(BASE_DIR, "tmp")

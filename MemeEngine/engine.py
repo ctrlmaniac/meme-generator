@@ -29,7 +29,7 @@ class MemeEngine:
 
         Return the path of the generated meme.
         """
-        BASE_DIR = Path(__file__).resolve().parent.parent.parent
+        BASE_DIR = Path(__file__).resolve().parent.parent
         TMP_DIR = os.path.join(BASE_DIR, self.output_dir)
 
         if not os.path.isdir(TMP_DIR):
@@ -49,7 +49,7 @@ class MemeEngine:
         stroke_fill = (255, 255, 255)
 
         # Fonts
-        FONTS_DIR = os.path.join(BASE_DIR, "memegenerator/_data/Fonts")
+        FONTS_DIR = os.path.join(BASE_DIR, "_data/Fonts")
         kalam = ImageFont.truetype(
             os.path.join(FONTS_DIR, "Kalam/Kalam-Bold.ttf"), 22
         )

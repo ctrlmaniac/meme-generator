@@ -4,7 +4,7 @@ An interface for ingesting quotes in different formats
 """
 from abc import ABC
 from typing import List
-from memegenerator.QuoteEngine import QuoteModel
+from QuoteEngine import QuoteModel
 
 
 class IngestorInterface(ABC):

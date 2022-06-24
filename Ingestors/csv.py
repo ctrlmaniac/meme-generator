@@ -6,7 +6,7 @@ from typing import List
 
 from pandas import read_csv
 
-from ..QuoteEngine import QuoteModel
+from QuoteEngine import QuoteModel
 from .interface import IngestorInterface
 
 
