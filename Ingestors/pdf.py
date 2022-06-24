@@ -33,9 +33,11 @@ class PDFIngestor(IngestorInterface):
         if not os.path.isdir(tmp_dir):
             os.mkdir(tmp_dir)
 
+        with open(tmp_file, "w") as file:
+            file.write("file")
+
         cmd = f"{pdftotext_bin} -layout -nopgbrk {infile} {tmp_file}"
 
-        subprocess.call(f"touch {tmp_file}")
         subprocess.call(cmd, shell=True, stderr=subprocess.STDOUT)
 
         quotes = TextIngestor.parse(tmp_file)
