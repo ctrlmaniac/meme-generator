@@ -23,8 +23,8 @@ class TextIngestor(IngestorInterface):
         if not cls.can_ingest(infile):
             print("Unable to ingest file. Please, provide a TXT file.")
         else:
-            with open(infile, "r") as infile:
-                contents = infile.readlines()
+            with open(infile, "r") as file:
+                contents = file.readlines()
 
             for line in contents:
                 line = line.strip("\n")
