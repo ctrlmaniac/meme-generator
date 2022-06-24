@@ -17,7 +17,7 @@ from .text import TextIngestor
 class PDFIngestor(IngestorInterface):
     """TextIngestor.
 
-    An ingestor that parses txt files.
+    An ingestor that parses pdf files.
     """
 
     @classmethod
@@ -35,6 +35,7 @@ class PDFIngestor(IngestorInterface):
 
         cmd = f"{pdftotext_bin} -layout -nopgbrk {infile} {tmp_file}"
 
+        subprocess.call(f"touch {tmp_file}")
         subprocess.call(cmd, shell=True, stderr=subprocess.STDOUT)
 
         quotes = TextIngestor.parse(tmp_file)
