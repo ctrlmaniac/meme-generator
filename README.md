@@ -36,7 +36,7 @@ To instantiate a virtual environment run the following commands:
 
 This will create a virtual environment in the **.venv** folder
 
-Run `python3 ./venv/bin/activate` to activate the virtual environment.
+Run `source ./venv/bin/activate` to activate the virtual environment.
 
 Then run `pip install -r requirements.txt` to install all dependencies.
 
