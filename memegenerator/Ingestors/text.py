@@ -14,15 +14,12 @@ class TextIngestor(IngestorInterface):
     An ingestor that parses txt files.
     """
 
-    def __init__(self):
-        """Inizialize class."""
-        self.accepts = "txt"
-
-    def parse(self, infile) -> List[QuoteModel]:
+    @classmethod
+    def parse(cls, infile) -> List[QuoteModel]:
         """Parse the infile and return a list of QuoteModel."""
         quotes = list()
 
-        if not self.can_ingest(infile):
+        if not cls.can_ingest(infile):
             print("Unable to ingest file. Please, provide a TXT file.")
         else:
             with open(infile, "r") as infile:
@@ -31,6 +28,6 @@ class TextIngestor(IngestorInterface):
             for line in contents:
                 line = line.strip("\n")
                 line = line.split(" - ")
-                quotes.append(QuoteModel(line[1], line[0].strip('"')))
+                quotes.append(QuoteModel(line[0].strip('"'), line[1]))
 
         return quotes

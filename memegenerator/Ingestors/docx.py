@@ -15,15 +15,12 @@ class DocxIngestor(IngestorInterface):
     An ingestor that parses docx files.
     """
 
-    def __init__(self):
-        """Inizialize class."""
-        self.accepts = "docx"
-
-    def parse(self, infile) -> List[QuoteModel]:
+    @classmethod
+    def parse(cls, infile) -> List[QuoteModel]:
         """Parse the infile and return a list of QuoteModel."""
         quotes = list()
 
-        if not self.can_ingest(infile):
+        if not cls.can_ingest(infile):
             print("Unable to ingest file. Please, provide a DOCX file.")
         else:
             doc = Document(infile)
@@ -34,7 +31,7 @@ class DocxIngestor(IngestorInterface):
                 line = line.split(" - ")
 
                 try:
-                    quote = QuoteModel(line[1], line[0].strip('"'))
+                    quote = QuoteModel(line[0].strip('"'), line[1])
                     quotes.append(quote)
                 except IndexError:
                     continue

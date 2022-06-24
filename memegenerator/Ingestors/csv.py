@@ -16,21 +16,18 @@ class CSVIngestor(IngestorInterface):
     An ingestor that parses CSV files.
     """
 
-    def __init__(self):
-        """Initialize class."""
-        self.accepts = "csv"
-
-    def parse(self, infile) -> List[QuoteModel]:
+    @classmethod
+    def parse(cls, infile) -> List[QuoteModel]:
         """Parse the infile and return a list of QuoteModel."""
         quotes = list()
 
-        if not self.can_ingest(infile):
+        if not cls.can_ingest(infile):
             print("Unable to ingest file. Please, provide a CSV file.")
         else:
             csv = read_csv(infile)
 
             for i, row in csv.iterrows():
-                quote = QuoteModel(row.author, row.body)
+                quote = QuoteModel(row.body, row.author)
                 quotes.append(quote)
 
         return quotes

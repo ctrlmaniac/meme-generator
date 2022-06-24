@@ -2,7 +2,7 @@
 
 An interface for ingesting quotes in different formats
 """
-from abc import ABC, abstractmethod
+from abc import ABC
 from typing import List
 from memegenerator.QuoteEngine import QuoteModel
 
@@ -13,8 +13,15 @@ class IngestorInterface(ABC):
     An abstract class for parsing quotes in different format files.
     """
 
-    @abstractmethod
-    def parse(self, infile: str) -> List[QuoteModel]:
+    accepts = (
+        "txt",
+        "docx",
+        "pdf",
+        "csv",
+    )
+
+    @classmethod
+    def parse(cls, infile: str) -> List[QuoteModel]:
         """Parse a file and return a list of quotes.
 
         :param infile: a fully qualified pathname to a file.
@@ -30,6 +37,5 @@ class IngestorInterface(ABC):
         Returns boolean.
         """
         extension = infile.split(".")[-1]
-        ingestor = cls(infile)
 
-        return True if ingestor.accepts == extension else False
+        return True if extension in cls.accepts else False

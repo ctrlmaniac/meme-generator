@@ -1,22 +1,23 @@
-"""MemeGenerator class.
+"""MemeEngine class.
 
 A class that generates meme
 """
 import os
-from random import random
+from pathlib import Path
+import random
 import uuid
-from PIL import Image, ImageFont, ImageDraw
+from PIL import Image, ImageDraw, ImageFont
 
 
-class MemeGenerator:
-    """MemeGenerator."""
+class MemeEngine:
+    """Meme engine."""
 
     def __init__(self, output_dir: str):
         """Inizialize class.
 
         :param output_dir: a fully qualified path.
         """
-        self.output = output_dir
+        self.output_dir = output_dir
 
     def make_meme(self, img_path, text, author, width=500) -> str:
         """Generate meme.
@@ -28,7 +29,13 @@ class MemeGenerator:
 
         Return the path of the generated meme.
         """
-        temp_name = uuid.uuid5()
+        BASE_DIR = Path(__file__).resolve().parent.parent.parent
+        TMP_DIR = os.path.join(BASE_DIR, self.output_dir)
+
+        if not os.path.isdir(TMP_DIR):
+            os.mkdir(TMP_DIR)
+
+        temp_name = uuid.uuid4()
 
         img = Image.open(img_path)
         outfile = os.path.join(self.output_dir, f"{temp_name}.jpg")
@@ -37,21 +44,22 @@ class MemeGenerator:
         height = int(real_height * width / real_width)
         img.thumbnail((width, height))
 
-        roboto_bold = ImageFont.truetype("../_data/Fonts/Roboto-Bold.ttf", 22)
-        roboto_medium = ImageFont.truetype(
-            "../_data/Fonts/Roboto-Medium.ttf", 18
-        )
-
         text_position = random.choice(range(30, height - 50))
         fill = (0, 0, 0)
         stroke_fill = (255, 255, 255)
+
+        # Fonts
+        FONTS_DIR = os.path.join(BASE_DIR, "memegenerator/_data/Fonts")
+        kalam = ImageFont.truetype(
+            os.path.join(FONTS_DIR, "Kalam/Kalam-Bold.ttf"), 22
+        )
 
         draw = ImageDraw.Draw(img)
         draw.text(
             (30, text_position),
             text,
             fill,
-            roboto_bold,
+            kalam,
             stroke_width=1,
             stroke_fill=stroke_fill,
         )
@@ -59,7 +67,7 @@ class MemeGenerator:
             (40, text_position + 25),
             f"- {author}",
             fill,
-            roboto_medium,
+            kalam,
             stroke_width=1,
             stroke_fill=stroke_fill,
         )

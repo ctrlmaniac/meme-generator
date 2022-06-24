@@ -13,28 +13,24 @@ class Ingestor:
     A class that manages all ingestors
     """
 
-    @property
-    def extension(self, infile):
-        """Return the extension of the given infile.
-
-        :param infile: a fully qualified path to the infile.
-        """
-        return infile.split(".")[-1].lower()
-
-    def parse(self, infile: str):
+    @classmethod
+    def parse(cls, infile: str):
         """Parse a file.
 
         pass the file to the right ingestor.
+
         :param infile: a fully qualified path to the infile.
         """
-        ext = self.extension(infile)
+        ext = infile.split(".")[-1].lower()
 
         if ext == "csv":
-            CSVIngestor.parse(infile)
+            return CSVIngestor.parse(infile)
         elif ext == "docx":
-            DocxIngestor.parse(infile)
+            return DocxIngestor.parse(infile)
         elif ext == "txt":
-            TextIngestor.pase(infile)
+            return TextIngestor.parse(infile)
+        elif ext == "pdf":
+            pass
         else:
             raise ValueError(
                 "Invalid file! Please, provide a txt, docx, csv or pdf file!"

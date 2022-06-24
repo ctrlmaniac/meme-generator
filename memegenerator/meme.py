@@ -1,18 +1,23 @@
 """A command-line tool for generating modules."""
 
+from argparse import ArgumentParser
 import os
+from pathlib import Path
 import random
 
-# @TODO Import your Ingestor and MemeEngine classes
+from .MemeEngine import MemeEngine
+from .QuoteEngine import QuoteModel
+from .Ingestors import Ingestor
 
 
 def generate_meme(path=None, body=None, author=None):
     """Generate a meme given an path and a quote."""
     img = None
     quote = None
+    BASE_DIR = Path(__file__).resolve().parent
 
     if path is None:
-        images = "./_data/photos/dog/"
+        images = os.path.join(BASE_DIR, "_data/photos/dog/")
         imgs = []
         for root, dirs, files in os.walk(images):
             imgs = [os.path.join(root, name) for name in files]
@@ -23,14 +28,15 @@ def generate_meme(path=None, body=None, author=None):
 
     if body is None:
         quote_files = [
-            "./_data/DogQuotes/DogQuotesTXT.txt",
-            "./_data/DogQuotes/DogQuotesDOCX.docx",
-            "./_data/DogQuotes/DogQuotesPDF.pdf",
-            "./_data/DogQuotes/DogQuotesCSV.csv",
+            os.path.join(BASE_DIR, "_data/DogQuotes/DogQuotesTXT.txt"),
+            os.path.join(BASE_DIR, "_data/DogQuotes/DogQuotesDOCX.docx"),
+            # os.path.join(BASE_DIR, "_data/DogQuotes/DogQuotesPDF.pdf"), TODO
+            os.path.join(BASE_DIR, "_data/DogQuotes/DogQuotesCSV.csv"),
         ]
         quotes = []
         for f in quote_files:
-            quotes.extend(Ingestor.parse(f))
+            parsed = Ingestor.parse(f)
+            quotes.extend(parsed)
 
         quote = random.choice(quotes)
     else:
@@ -38,15 +44,29 @@ def generate_meme(path=None, body=None, author=None):
             raise Exception("Author Required if Body is Used")
         quote = QuoteModel(body, author)
 
-    meme = MemeEngine("./tmp")
+    print(quote)
+
+    meme = MemeEngine("tmp")
     path = meme.make_meme(img, quote.body, quote.author)
     return path
 
 
 if __name__ == "__main__":
-    # @TODO Use ArgumentParser to parse the following CLI arguments
-    # path - path to an image file
-    # body - quote body to add to the image
-    # author - quote author to add to the image
-    args = None
-    print(generate_meme(args.path, args.body, args.author))
+    parser = ArgumentParser(description="Generates meme and prints their path")
+    parser.add_argument(
+        "--path",
+        type=str,
+        help="path to an image file",
+    )
+    parser.add_argument(
+        "--body",
+        type=str,
+        help="quote body to add to the image",
+    )
+    parser.add_argument(
+        "--author",
+        type=str,
+        help="quote author to add to the image",
+    )
+    args = parser.parse_args()
+    generate_meme(args.path, args.body, args.author)

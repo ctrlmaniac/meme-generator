@@ -10,7 +10,7 @@ class QuoteModel:
     A model for building quotes.
     """
 
-    def __init__(self, author, body):
+    def __init__(self, body, author):
         """Inizialize class.
 
         :param author: the author of the quote.
